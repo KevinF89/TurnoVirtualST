@@ -7,7 +7,7 @@ import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-gr
 import { process, State } from '@progress/kendo-data-query';
 import localeEsAr from '@angular/common/locales/es-AR';
 import { GlobalService } from 'src/app/Servicios/global.service';
-import { Mensaje, tipoMensaje , respuestaMensaje} from 'src/app/interfaces/mensaje';
+import { Mensaje, tipoMensaje, respuestaMensaje } from 'TurnoVirtualST/src/app/interfaces/mensaje';
 import { GeneralService } from 'src/app/Servicios/general.service';
 import { STResponse,RespuestaApi,ResMensajes} from 'src/app/Interfaces/strresponse';
 import {DropdownListClass,ListaDocs} from 'src/app/Interfaces/dropdown-list-class'

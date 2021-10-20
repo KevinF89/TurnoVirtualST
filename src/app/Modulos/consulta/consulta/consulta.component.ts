@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {Modelo} from 'src/app/Interfaces/modelo';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Mensaje, tipoMensaje , respuestaMensaje} from 'src/app/interfaces/mensaje';
+import { Mensaje, tipoMensaje , respuestaMensaje} from 'TurnoVirtualST/src/app/interfaces/mensaje';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
