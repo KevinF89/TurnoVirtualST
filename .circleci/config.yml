@@ -38,7 +38,7 @@ jobs:
 
                 - run:
                     name: Testing
-                    command: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+                    command: npm run test --
                 # End to End test
                 - run:
                     name: End to End Test
