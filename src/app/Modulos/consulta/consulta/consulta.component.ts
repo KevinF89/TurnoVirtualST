@@ -16,7 +16,7 @@ import { ComboBoxModule,DropDownsModule } from '@progress/kendo-angular-dropdown
 import { Usuario,UsRespuesta } from 'src/app/Interfaces/usuario';
 import { Sucursal,ResSucursal } from 'src/app/Interfaces/surucaral';
 import { anyChanged } from '@progress/kendo-angular-common';
-import {Servicios,SerRespuesta} from 'src/app/interfaces/servicios';
+import {Servicios,SerRespuesta} from 'src/app/Interfaces/servicios';
 import {TurnosService} from 'src/app/Servicios/turnos.service';
 import {Turno,ResTurno,Rescancelacion,ResCola} from 'src/app/Interfaces/turno';
 import { Archivos } from 'src/app/Interfaces/archivos';

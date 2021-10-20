@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { SesionUsuario } from '../interfaces/sesion-usuario';
 //import { ParametroSistema } from '../interfaces/parametro-sistema';
-import { Usuario } from '../interfaces/usuario';
+import { Usuario } from '../Interfaces/usuario';
 import { Turno } from '../Interfaces/turno';
 import { Router } from '@angular/router';
 @Injectable({
