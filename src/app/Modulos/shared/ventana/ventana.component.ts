@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Mensaje, tipoMensaje, respuestaMensaje } from '../interfaces/mensaje'
+import { Mensaje, tipoMensaje, respuestaMensaje } from 'src/app/Interfaces//mensaje'
 
 @Component({
   selector: 'app-ventana',
