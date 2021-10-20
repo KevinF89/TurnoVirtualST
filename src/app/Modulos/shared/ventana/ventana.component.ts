@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Mensaje, tipoMensaje, respuestaMensaje } from 'src/app/Interfaces//mensaje'
+import { Mensaje, tipoMensaje, respuestaMensaje } from 'src/app/Interfaces/mensaje'
 
 @Component({
   selector: 'app-ventana',
@@ -10,14 +10,14 @@ export class VentanaComponent implements OnInit {
 
   @Input() Mensaje: Mensaje
   @Output() respuestaMensaje: EventEmitter<respuestaMensaje> = new EventEmitter();
-  
+
   titulo: string = '';
   btnCancelar: boolean = false;
 
-  constructor() {}
-  
-  ngOnInit(){ 
-    switch(this.Mensaje.tipo) {
+  constructor() { }
+
+  ngOnInit() {
+    switch (this.Mensaje.tipo) {
       case tipoMensaje.Confirmacion: {
         this.titulo = 'Mensaje de confirmación';
         this.btnCancelar = true;
@@ -30,7 +30,7 @@ export class VentanaComponent implements OnInit {
       case tipoMensaje.Informacion: {
         this.titulo = 'Mensaje de información';
         break;
-      } 
+      }
       case tipoMensaje.Verificacion: {
         this.titulo = 'Mensaje de verificación';
         break;
@@ -39,16 +39,16 @@ export class VentanaComponent implements OnInit {
   }
 
   accion(accion: string) {
-    switch(accion){
-      case 'cerrar':{
+    switch (accion) {
+      case 'cerrar': {
         this.respuestaMensaje.emit(respuestaMensaje.Cerrar);
         break;
       }
-      case 'aceptar':{
+      case 'aceptar': {
         this.respuestaMensaje.emit(respuestaMensaje.Aceptar);
         break;
       }
-      case 'cancelar':{
+      case 'cancelar': {
         this.respuestaMensaje.emit(respuestaMensaje.Cancelar);
         break;
       }

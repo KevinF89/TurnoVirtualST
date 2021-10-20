@@ -7,16 +7,16 @@ import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-gr
 import { process, State } from '@progress/kendo-data-query';
 import localeEsAr from '@angular/common/locales/es-AR';
 import { GlobalService } from 'src/app/Servicios/global.service';
-import { Mensaje, tipoMensaje, respuestaMensaje } from '../app/interfaces/mensaje';
+import { Mensaje, tipoMensaje, respuestaMensaje } from 'src/app/Interfaces/mensaje';
 import { GeneralService } from 'src/app/Servicios/general.service';
 import { STResponse,RespuestaApi,ResMensajes} from 'src/app/Interfaces/strresponse';
 import {DropdownListClass,ListaDocs} from 'src/app/Interfaces/dropdown-list-class'
 import { Observable, VirtualTimeScheduler } from 'rxjs';
 import { ComboBoxModule,DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { Usuario,UsRespuesta } from 'src/app/interfaces/usuario';
-import { Sucursal,ResSucursal } from 'src/app/interfaces/surucaral';
+import { Usuario,UsRespuesta } from 'src/app/Interfaces/usuario';
+import { Sucursal,ResSucursal } from 'src/app/Interfaces/surucaral';
 import { anyChanged } from '@progress/kendo-angular-common';
-import {Servicios,SerRespuesta} from 'src/app/interfaces/servicios';
+import {Servicios,SerRespuesta} from 'src/app/Interfaces/servicios';
 import {TurnosService} from 'src/app/Servicios/turnos.service';
 import {Turno,ResTurno} from 'src/app/Interfaces/turno';
 import { Archivos } from 'src/app/Interfaces/archivos';

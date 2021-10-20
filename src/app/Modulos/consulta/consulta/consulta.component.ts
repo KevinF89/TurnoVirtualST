@@ -13,8 +13,8 @@ import { STResponse,RespuestaApi,ProcessResul} from 'src/app/Interfaces/strrespo
 import {DropdownListClass,ListaDocs} from 'src/app/Interfaces/dropdown-list-class'
 import { Observable } from 'rxjs';
 import { ComboBoxModule,DropDownsModule } from '@progress/kendo-angular-dropdowns';
-import { Usuario,UsRespuesta } from 'src/app/interfaces/usuario';
-import { Sucursal,ResSucursal } from 'src/app/interfaces/surucaral';
+import { Usuario,UsRespuesta } from 'src/app/Interfaces/usuario';
+import { Sucursal,ResSucursal } from 'src/app/Interfaces/surucaral';
 import { anyChanged } from '@progress/kendo-angular-common';
 import {Servicios,SerRespuesta} from 'src/app/interfaces/servicios';
 import {TurnosService} from 'src/app/Servicios/turnos.service';
