@@ -1,0 +1,7 @@
+{
+    "urlApiTurnos": "http://localhost:59465/api/",
+    "Token": "",
+    "defaultImage":"/assets/icons/OFV/Icono_numero documento.svg",
+    "urlAppTurnoVirtual":"",
+    "Segundos":40
+}

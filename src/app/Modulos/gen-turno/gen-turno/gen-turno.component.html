@@ -1,0 +1,308 @@
+<app-ventana *ngIf="abrirVentana" [Mensaje] = "mensaje" (respuestaMensaje)= "recibirRespuestaMensaje($event)">
+</app-ventana>
+<!-- <div class="panel-body center-block">
+    <div class="panel2 center-block"> -->
+<div class="" >
+    <div class="row" >
+
+        <div class="col-md-6 offset-md-3">
+            <!-- <span class="auto-style3" id="negrita">¡Afiliarte es muy fácil!</span> <span class="auto-style3">Registra tus datos para que uno de nuestros asesores se ponga en contacto.</span></h1>
+    <h2 class="auto-style3" id="subtitulo"><em>Los Campos marcados con (*) son obligatorios.</em> </h2> -->
+    
+    <h1>
+        <span class="auto-style3" id="negrita1">Registra tus datos</span><span class="auto-style3" id="subtitulo">&nbsp;Para solicitar un turno virtual</span>
+        <br />
+        <span class="auto-style3" >Los Campos marcados con (*) son obligatorios.</span></h1>
+           
+        </div>
+        
+    </div>
+
+    <form [formGroup]="formGenTurno"   >
+
+        <div class="row" >
+            <div class="col-md-4 offset-md-2" *ngIf="ListaDcs">
+                <div class="form-group">
+                <label [for]="ddlTipoIdentificacion"  >Tipo Identificación*</label>
+                <select id="ddlTipoIdentificacion" class="k-combobox" formControlName="ddlTipoIdentificacion" placeholder="Selecciona">
+                    <option value="">Selecciona</option>
+                    <option *ngFor="let a of ListaDcs" [value]="a.IdTipodoc">{{a.Descripcion}}</option>
+                  </select>
+            </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                <label [for]="txtNumeroIdentificacion" >No. Identificación*</label>
+                <input formControlName ="txtNumeroIdentificacion" class="k-textbox"  type="text" minlength="4" maxlength="20" >
+            </div>
+            </div>
+
+        </div>
+    
+    <div id="campos" *ngIf="!consultado">
+        <br />
+        <div class="row">
+           
+            <div class="col-md-4 offset-md-5" >
+                <div class="form-group">
+                    <label [for]="btnSiguiente" id="validar1" class="validacion" >{{validacion}}</label>
+                <button kendoButton type="submit" #btnSiguiente class="k-button" style="width: 50%;" (click)="ConsultarEmp()">Siguiente</button>
+            </div>
+            </div>
+
+
+    </div>
+</div>
+    <div id="campos" *ngIf="consultado">
+    <div class="col-md-8  offset-md-2"  >
+        <div class="form-group">
+            <img class="linea" src="assets/images/linea.png" alt="">
+    </div>
+    </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-2">
+                <div class="form-group">
+                <label [for]="txtNombre" >Nombres*</label>
+                <input formControlName ="txtNombre" class="k-textbox"   type="text" (change)="vaciar()"  [(ngModel)]="usuario.Nombres">
+                <label id="ValNombres" class="validacion" >{{valnombres}}</label>
+            </div>
+        </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                <label [for]="txtApellido" >Apellidos*</label>
+                <input formControlName ="txtApellido" class="k-textbox"  type="text" (change)="vaciar()" [(ngModel)]="usuario.Apellidos"  >
+                <label id="ValApellidos" class="validacion" >{{valapellidos}}</label>
+            </div>
+            </div>
+            
+
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-2" *ngIf="ListCiudad">
+                <div class="form-group">
+                    <label [for]="ddlCiudad"  >Ciudad*</label>
+                    <select id="ddlCiudad" class="k-combobox" formControlName="ddlCiudad" (change)="ConultarTramites();vaciar();" aria-placeholder="Selecciona">
+                        <option value="">Selecciona</option>
+                        <option *ngFor="let a of ListCiudad" [value]="a.Id">{{a.Name}}</option>
+                      </select>
+                      <label id="ValCiudad" class="validacion" >{{valciudad}}</label>
+             </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                <label [for]="txtCorreo" >Correo*</label>
+                
+                <input formControlName ="txtCorreo" class="k-textbox"  type="text" (change)="vaciar()" [(ngModel)]="CorreoMostrar" >
+                <label id="ValCorreo" class="validacion" >{{valcorreo}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-2">
+                <div class="form-group">
+                <label [for]="txtTelefono" >Teléfono</label>
+                <input formControlName ="txtTelefono" class="k-textbox"  type="text" maxlength="10" (change)="vaciar()"  [(ngModel)]="TelefonoMostrar" >
+                <label id="ValTelefono" class="validacion" >{{valtelefono}}</label>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="form-group">
+                <label [for]="txtCelular" >Celular*</label>
+                <input formControlName ="txtCelular" class="k-textbox"  type="text" maxlength="10" (change)="vaciar()" [(ngModel)]="celularMostrar" >
+                <label id="ValCelular" class="validacion" >{{valcelular}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="form-group">
+                    <label [for]="ddlTramite"  >Selecciona el trámite que vas a realizar:</label>
+                    <select id="ddlTramite" class="k-combobox" formControlName="ddlTramite" placeholder="Selecciona" (change)="ConsularMensaje()">
+                        <option value="">Selecciona</option>
+                        <option *ngFor="let a of listramites" [value]="a.Id">{{a.Name}}</option>
+                      </select>
+                      <label id="ValTramite" class="validacion" >{{valtramite}}</label>
+            </div>
+            </div>
+     
+
+        </div>
+        <div class="row">
+                <div class="col-md-8 offset-md-2" >
+                    <div class="form-group">
+                    <label [for]="txcomentario" >Describe detalladamente tu solicitud:</label>
+                    <textarea kendoTextArea class="k-textarea" formControlName="txcomentario"  (change)="vaciar()" style="width: 100%;"></textarea>
+                    <label id="ValNotas" class="validacion" >{{valnotas}}</label>
+                </div>
+                </div>
+        </div>
+        <br />
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+        <div *ngFor="let a of archivos">
+            <label [for]="txcomentario" >{{a}}</label>
+        </div>
+    </div>
+    </div>
+    <div *ngIf="!Turno">
+        <div class="row"  >
+            
+         
+                    <div class="col-md-4 offset-md-2">
+                        <div class="form-group">
+                           
+                        
+                        <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                            
+                            <input type="file" class="inputf" #fileDropRef id="fileDropRef"   (change)="guardarArchivo($event.target.files)" /> 
+                            <!-- <h6><img class="k-icon-file"  src="assets/icons/OFV/afiliaciones.svg" alt=""><label for="fileDropRef" > <strong>Seleccionar archivo</strong></label></h6> -->
+                           
+                           <label for="fileDropRef" class="labelf" ><img class="k-icon-file"  src="assets/images/Icono_Adjuntar.png" alt=""> <strong>Seleccionar archivo</strong></label>
+                       
+                       <!-- <div class="files-list" > -->
+                            <!-- <div class="single-file"*ngIf="file"> -->
+                                <!-- <img src="assets/icons/cargue archivos AZUL.svg" width="25px" alt="file"> -->
+                                <!-- <div class="info"> -->
+                                    <h4 class="name" >
+                                        {{ file[0]?.name }}
+                                    </h4>
+                                <!-- </div> -->
+                                <!-- <img src="assets/icons/OFV/equis roja.svg" class="delete" width="15px" alt="file" (click)="deleteFile(art)"> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </div> 
+                    <label id="ValAdjunto" class="validacion" >{{valadjunto}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-4 offset-md-2" *ngIf="!file3">
+                        <div class="form-group">
+                            <button type="button" class="transparente" (click)="ActivarFile()">Elige más archivos</button>
+                        </div></div>
+    </div>
+    <br  *ngIf="file2"/> 
+    <div class="row" *ngIf="file2" >
+            
+       <br />    
+        <div class="col-md-4 offset-md-2">
+            <div class="form-group">
+               
+            
+            <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                
+                <input type="file" class="inputf" #fileDropRef2 id="fileDropRef2"   (change)="guardarArchivo2($event.target.files)" /> 
+                <!-- <h6><img class="k-icon-file"  src="assets/icons/OFV/afiliaciones.svg" alt=""><label for="fileDropRef" > <strong>Seleccionar archivo</strong></label></h6> -->
+               
+               <label for="fileDropRef2" class="labelf" ><img class="k-icon-file"  src="assets/images/Icono_Adjuntar.png" alt=""> <strong>Seleccionar archivo</strong></label>
+           
+           <!-- <div class="files-list" > -->
+                <!-- <div class="single-file"*ngIf="file"> -->
+                    <!-- <img src="assets/icons/cargue archivos AZUL.svg" width="25px" alt="file"> -->
+                    <!-- <div class="info"> -->
+                        <h4 class="name" >
+                            {{ files2[0]?.name }}
+                        </h4>
+                    <!-- </div> -->
+                    <!-- <img src="assets/icons/OFV/equis roja.svg" class="delete" width="15px" alt="file" (click)="deleteFile(art)"> -->
+                <!-- </div> -->
+            <!-- </div> -->
+        </div> 
+        </div>
+        </div>
+</div>
+<br  *ngIf="file3"/> 
+<div class="row" *ngIf="file3" >
+   <br />         
+         
+    <div class="col-md-4 offset-md-2">
+        <div class="form-group">
+           
+        
+        <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+            
+            <input type="file" class="inputf" #fileDropRef3 id="fileDropRef3"   (change)="guardarArchivo3($event.target.files)" /> 
+            <!-- <h6><img class="k-icon-file"  src="assets/icons/OFV/afiliaciones.svg" alt=""><label for="fileDropRef" > <strong>Seleccionar archivo</strong></label></h6> -->
+           
+           <label for="fileDropRef3" class="labelf" ><img class="k-icon-file"  src="assets/images/Icono_Adjuntar.png" alt=""> <strong>Seleccionar archivo</strong></label>
+       
+       <!-- <div class="files-list" > -->
+            <!-- <div class="single-file"*ngIf="file"> -->
+                <!-- <img src="assets/icons/cargue archivos AZUL.svg" width="25px" alt="file"> -->
+                <!-- <div class="info"> -->
+                    <h4 class="name" >
+                        {{ files3[0]?.name }}
+                    </h4>
+                <!-- </div> -->
+                <!-- <img src="assets/icons/OFV/equis roja.svg" class="delete" width="15px" alt="file" (click)="deleteFile(art)"> -->
+            <!-- </div> -->
+        <!-- </div> -->
+    </div> 
+    </div>
+    </div>
+</div>
+</div>
+    <br />
+
+        <div class="row" *ngIf="!Turno">
+
+                <div class="col-md-4 offset-md-5" >
+                    <div class="form-group">
+                        <!-- <input type="file" #fileDrope id="fileDrope" multiple  (change)="guardarArchivo($event.target.files)" />  -->
+                        <label [for]="btnSiguiente" id="validar1" class="validacion" >{{validacion2}}</label>
+                    <button kendoButton type="submit" #btnTurno class="k-button" style="width: 50%;" (click)="CrearUserQF()">Solicitar turno</button>
+                </div>
+                </div>
+        </div>
+        <br />
+        <div id="EsConsultar" *ngIf="Turno">
+        <div class="row">
+            
+         
+            <div class="col-md-12">
+                <div class="form-group">
+              
+                <div class="container2" >
+                    <label id="es">Tu turno es:</label>
+                    <br />
+                   <h6>{{CodigoTicket}}</h6>
+                </div>
+            </div>
+            </div>
+           
+</div>
+<br />
+<div class="row">
+
+    <div class="col-md-4 offset-md-4" >
+        <div class="form-group">
+            <label class="lturnos" >Para hacer seguimiento a tu turno haz:</label>
+        
+    </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-4 offset-md-5" >
+        <div class="form-group">
+            
+        <button kendoButton #btnConsulta type="submit" class="k-button" style="width: 50%;" (click)='IrAModulo(2, "Consulta")'>Clic Aquí</button>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+    </form>
+</div>
+<br />
+<!-- <footer class="footer">
+    <div >
+
+        Vigilado super salud
+        <br>
+        &#169; Copyright 2019 | Todos los derechos reservados
+        <br>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-youtube"></i>
+        
+    </div>
+</footer> -->

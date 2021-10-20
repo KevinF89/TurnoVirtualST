@@ -1,0 +1,12 @@
+<kendo-dialog [title]="titulo" (close)="accion('cerrar')" [minWidth]="250" [width]="450">
+    <!-- <p style="margin: 30px; text-align: center;">{{ Mensaje.mensaje }}</p> -->
+    <h1>
+        <p style="margin: 30px; text-align: center;">
+        <span class="auto-style3"  >{{Mensaje.mensaje}}</span>
+    </p>
+        </h1>
+    <kendo-dialog-actions>
+        <button kendoButton (click)="accion('aceptar')" style="width: 45%;">Aceptar</button>
+        <button *ngIf="btnCancelar"  (click)="accion('cancelar')" class="cs-button" style="width: 45%;">Cancelar</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

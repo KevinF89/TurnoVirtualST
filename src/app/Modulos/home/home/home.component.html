@@ -1,0 +1,78 @@
+
+
+<div class="row" >
+
+    <div class="col-md-8 offset-md-2">
+
+<h1>
+    <span class="auto-style3">Bienvenido a nuestro</span><span class="auto-style3" id="negrita"> Punto de Atención en Casa,</span>
+    <br />
+<!--<h1> -->
+    <span class="auto-style3" > un canal de atención y servicio </span><span  class="auto-style3"  id="negrita">rápido, seguro y sin filas.</span></h1>
+       
+    </div>
+</div>
+    <div class="row " >
+        <div class="col-md-12 ">
+           <h1> <span class="auto-style3"  id="negrita">Los servicios que podrás realizar son:</span></h1>
+         
+        </div> 
+    </div>
+    <div *ngFor="let b of ListaServices">
+        <div class="row" >
+            
+            <div class="col-md-4 offset-md-3"><span class="auto-style4">{{b[0]}}</span>
+            </div>
+            <div class="col-md-4 "><span class="auto-style2">{{b[1]}}</span></div>
+        
+        </div>
+    </div>
+
+         
+        <div class="row" >
+
+            <div class="col-md-4 offset-md-4">
+        
+        <h2>
+            <span class="auto-style3">Horario de Atención:</span>          
+        <br />
+        <div *ngFor="let a of horarios">
+            <span  class="auto-style3"  id="negrita">{{a}} </span>
+            <br /> </div> 
+        </h2>
+        
+            
+          
+        
+            </div>
+
+        </div>
+        <div class="row" >
+
+            <div class="col-md-4 offset-md-4">
+                <button kendoButton type="submit" #btnTurno id="btnTurno" class="k-button" style="width: 45%;" (click)='IrAModulo(1, "GenTurno")'>Solicitar turno</button>&nbsp; 
+                <button kendoButton type="submit" #btnSeguimiento id="btnSeguimiento"  class="k-button" style="width: 45%; "(click)='IrAModulo(2, "Consulta")'>Seguimiento turno</button>
+            </div>
+        </div>
+
+        <!-- <footer class="footer">
+            
+        </footer> -->
+
+        <br />
+        
+ <div class="Banner">
+        
+    <div class="row">
+   
+<div class="col-md-12"><img style="width: 100%;" id="StApp" src="assets/images/PAenCasa_APP.jpg">
+</div>   
+</div> 
+<div class="row"  id="immedia">
+   
+    <div class="col-md-12" id="lacol"><img style="width: 100%;" id="StAppmedia" src="assets/images/PAenCasa_APP_Responsive.jpg">
+    
+</div>  
+                
+            </div> 
+        </div> 

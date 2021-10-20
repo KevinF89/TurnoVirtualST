@@ -1,0 +1,170 @@
+<app-ventana *ngIf="abrirVentana" [Mensaje] = "mensaje" (respuestaMensaje)= "recibirRespuestaMensaje($event)">
+</app-ventana>
+
+<div class="fconsulta" *ngIf="!Caso">
+<div class="row" >
+
+    <div class="col-md-12">
+        <!-- <span class="auto-style3" id="negrita">¡Afiliarte es muy fácil!</span> <span class="auto-style3">Registra tus datos para que uno de nuestros asesores se ponga en contacto.</span></h1>
+<h2 class="auto-style3" id="subtitulo"><em>Los Campos marcados con (*) son obligatorios.</em> </h2> -->
+
+<h1>
+    <span class="auto-style3" id="negrita1">Seguimiento de turno</span>
+    <br />
+    <span class="auto-style3" >Por favor selecciona el tipo de documento y número de documento para realizar el seguimiento del turno:</span></h1>
+       
+    </div>
+</div>
+<form [formGroup]="formConsulta" class="form-control-static" (ngSubmit)="ConsultarEmp()" >
+
+    <div class="row">
+        <div class="col-md-4 offset-md-2" *ngIf="ListaDcs">
+            <div class="form-group">
+                <label [for]="ddlTipoIdentificacion"  > Tipo Identificación</label>
+                <select id="ddlTipoIdentificacion" class="k-combobox" formControlName="ddlTipoIdentificacion">
+
+                    <option *ngFor="let a of ListaDcs" [value]="a.IdTipodoc">{{a.Descripcion}}</option>
+                  </select>
+        </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+            <label [for]="txtNumeroIdentificacion" >Número de documento*</label>
+            <input formControlName ="txtNumeroIdentificacion" class="k-textbox"  type="text" >
+        </div>
+        </div>
+
+    </div>
+    <br />
+           
+    <div class="row">
+
+        <div class="col-md-4 offset-md-5" >
+            <div class="form-group">
+            <button kendoButton type="submit" #btnSiguiente class="k-button" style="width: 50%;">Siguiente</button>
+        </div>
+        </div>
+
+    
+</div>
+    </form>
+
+</div>
+<div class="resulta"  *ngIf="Caso">
+    <div class="row" >
+
+        <div class="col-md-12">
+            <!-- <span class="auto-style3" id="negrita">¡Afiliarte es muy fácil!</span> <span class="auto-style3">Registra tus datos para que uno de nuestros asesores se ponga en contacto.</span></h1>
+    <h2 class="auto-style3" id="subtitulo"><em>Los Campos marcados con (*) son obligatorios.</em> </h2> -->
+    
+    <h1>
+        <span class="auto-style3" id="negrita1">{{labelestadoazul}}</span>
+        <br />
+        <span class="auto-style3" >{{labelestadogris}}</span></h1>
+           
+        </div>
+           
+        </div>
+   
+    <form [formGroup]="formSubir" class="form-control-static" >
+        <div class="row">
+            
+         
+            <div class="col-md-12">
+                <div class="form-group">
+              
+                <div class="container2" >
+                    <label id="es">Tu turno es</label>
+                    <div *ngIf="Caso.Status===0">
+                   <h6>{{CodigoTicket}}</h6>
+                </div>
+                   <div *ngIf="Caso.Status===1">
+                    <div class="h8">{{CodigoTicket}}</div>
+                </div>
+                   
+                   <label id="es">Turno en atención</label>
+                    
+                    <div *ngIf="Caso.Status===0 && Resul.Estado==='InService'">
+                        <div class="h7">{{TurnoAtencion}}</div>
+                    </div>
+                    <div *ngIf="Caso.Status===1">
+                        <div class="h8">{{TurnoAtencion}}</div>
+                    </div>
+                    <div *ngIf="Caso.Status===0 && Resul.Estado==='Waiting'">
+                        <h5>{{TurnoAtencion}}</h5>
+                    </div>
+                   
+                   
+                   <span class="turn">Actualmente tenemos</span>
+                   <p><span class="cant">{{CantAsesores}} ASESORES</span><span class="turn"> atendiendo</span>
+                   </p>
+                </div>
+            </div>
+            </div>
+           
+</div>
+<div class="row" *ngIf="Caso.Status===0">
+    <div class="col-md-10 offset-md-3">
+    <label [for]="txcomentario" >Si te faltó adjuntar algún soporte a tu solicitud, puedes hacerlo aquí</label>
+</div>
+</div>
+<div class="row" *ngIf="Caso.Status===0">
+            
+         
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+        
+            <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                
+                <input type="file" class="inputf" #fileDropRef id="fileDropRef"   (change)="guardarArchivo($event.target.files)" /> 
+                <!-- <h6><img class="k-icon-file"  src="assets/icons/OFV/afiliaciones.svg" alt=""><label for="fileDropRef" > <strong>Seleccionar archivo</strong></label></h6> -->
+               
+               <label for="fileDropRef" class="labelf" ><img class="k-icon-file"  src="assets/images/Icono_Adjuntar.png" alt=""> <strong>Seleccionar archivo</strong></label>
+           
+           <!-- <div class="files-list" > -->
+                <!-- <div class="single-file"*ngIf="file"> -->
+                    <!-- <img src="assets/icons/cargue archivos AZUL.svg" width="25px" alt="file"> -->
+                    <!-- <div class="info"> -->
+                        <h4 class="name" >
+                            {{ file[0]?.name }}
+                        </h4>
+                    <!-- </div> -->
+                    <!-- <img src="assets/icons/OFV/equis roja.svg" class="delete" width="15px" alt="file" (click)="deleteFile(art)"> -->
+                <!-- </div> -->
+            <!-- </div> -->
+        </div>
+    </div>
+    </div>
+    
+
+
+        <div class="col-md-4" >
+            <div class="form-group" *ngIf="file.length >0">
+            <button kendoButton type="submit" #btnSiguiente class="k-button" style="width: 30%;" (click)="SubirArchivos()">Subir archivo</button>
+        </div>
+        </div>
+
+</div>
+<br />
+
+<div class="row" >
+
+    <div class="col-md-8 offset-md-3">
+        <div class="form-group">
+        <button kendoButton type="submit" class="k-button" style="width: 26%;" (click)='IrAModulo(0, "")' >Atrás</button>&nbsp; 
+        <button kendoButton type="submit" #btnConsultar id="btnConsultar"  class="k-button" style="width: 26%;" (click)='ConsultarProcesUs()'*ngIf="Caso.Status===0">Volver a consultar</button>&nbsp;
+        <button kendoButton type="submit"  class="c-button" style="width: 26%;" (click)='PreguntarCancelacion()' *ngIf="Caso.Status===0 && Resul.Estado==='Waiting'">Cancelar turno</button>
+    </div>
+</div>
+</div>
+    </form>
+    <br />
+    <div class="row" >
+
+        <div class="col-md-12" ><h1>
+            <label id="ValTiempo" class="validacion" >{{valtiempo}}</label></h1>
+        </div></div>
+   
+        <br />
+</div>
+
